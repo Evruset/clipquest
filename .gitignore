@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+env/
+*.env
+
+# Node.js / React
+node_modules/
+dist/
+build/
+.env.local
+.env.*.local
+
+# Docker
+docker-compose.override.yml
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/

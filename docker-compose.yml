@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: clipquest
+      POSTGRES_USER: clipuser
+      POSTGRES_PASSWORD: clipsecret
+
+  redis:
+    image: redis:7
+
+  api:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/static:/app/static    # тут монтируем статику
+    depends_on:
+      - db
+      - redis
+
+  web:
+    build: ./webapp/clipquest-app
+    ports:
+      - "5173:5173"
+
+  bot:
+    build: ./bot
+    depends_on:
+      - api
